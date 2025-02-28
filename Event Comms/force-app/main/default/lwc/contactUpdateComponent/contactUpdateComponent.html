@@ -1,0 +1,29 @@
+<template>
+    <template if:true={contact}>
+        <div class="slds-p-around_medium">
+            <template if:false={editMode}>
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-2">
+                        <p><b>Name:</b> {contact.FirstName} {contact.LastName}</p>
+                        <p><b>Email:</b> {contact.Email}</p>
+                        <p><b>Phone:</b> {contact.Phone}</p>
+                    </div>
+                </div>
+                <lightning-button label="Edit" onclick={handleEdit}></lightning-button>
+            </template>
+            <template if:true={editMode}>
+                <lightning-input type="text" label="First Name" name="FirstName" value={tempContact.FirstName} onchange={handleInputChange}></lightning-input>
+                <lightning-input type="text" label="Last Name" name="LastName" value={tempContact.LastName} onchange={handleInputChange}></lightning-input>
+                <lightning-input type="email" label="Email" name="Email" value={tempContact.Email} onchange={handleInputChange}></lightning-input>
+                <lightning-input type="tel" label="Phone" name="Phone" value={tempContact.Phone} onchange={handleInputChange}></lightning-input>
+                <lightning-button label="Save" variant="brand" onclick={handleSave}></lightning-button>
+                <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+            </template>
+        </div>
+    </template>
+    <template if:true={error}>
+        <div class="slds-p-around_medium">
+            <p>Error loading contact details.</p>
+        </div>
+    </template>
+</template>

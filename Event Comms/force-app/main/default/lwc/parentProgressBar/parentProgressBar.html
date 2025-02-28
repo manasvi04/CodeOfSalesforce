@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Progress Bar Controller">
+        <div class="slds-m-around_medium">
+            <lightning-input type="range" label="Adjust Progress"
+                min="0" max="100" value={progressValue}
+                onchange={handleSliderChange}>
+            </lightning-input>
+            
+            <lightning-input type="number" label="Enter Percentage"
+                min="0" max="100" value={progressValue}
+                onchange={handleInputChange}>
+            </lightning-input>
+
+            <c-child-progress-bar progress={progressValue}></c-child-progress-bar>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="Accounts List" icon-name="standard:account">
+        <div class="slds-m-around_medium">
+            <!-- Button to fetch or hide accounts -->
+            <lightning-button 
+                label={buttonLabel} 
+                onclick={fetchAccounts} 
+                variant="brand" 
+                class="slds-m-bottom_medium">
+            </lightning-button>
+        </div>
+
+        <!-- Display the datatable if accounts are fetched and visible -->
+        <template if:true={isAccountsVisible}>
+            <div class="slds-box slds-box_xx-small slds-m-top_medium">
+                <lightning-datatable 
+                    key-field="Id" 
+                    data={accounts} 
+                    columns={columns} 
+                    hide-checkbox-column="true"
+                    class="slds-table slds-table_bordered slds-table_cell-buffer">
+                </lightning-datatable>
+            </div>
+        </template>
+
+        <!-- Show error message in case of failure -->
+        <template if:true={error}>
+            <div class="slds-text-color_error slds-m-top_medium">
+                <p><strong>Error fetching accounts: </strong>{error.body.message}</p>
+            </div>
+        </template>
+    </lightning-card>
+</template>

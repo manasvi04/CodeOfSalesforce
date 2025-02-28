@@ -1,0 +1,34 @@
+<template>
+    <lightning-card title="To-Do List">
+        <div class="slds-p-horizontal_medium">
+            <!-- Input field for entering task -->
+            <lightning-input label="Enter Task" value={taskText} onchange={handleInputChange}></lightning-input>
+            <!-- Button to add the task -->
+            <lightning-button label="Add Task" onclick={handleAddTask} class="slds-m-top_medium"></lightning-button>
+        </div>
+        
+        <!-- Display the tasks if they exist -->
+        <template if:true={tasks}>
+            <div class="slds-m-top_medium">
+                <ul>
+                    <!-- Loop over each task to display the task and a delete button -->
+                    <template for:each={tasks} for:item="task">
+                        <li key={task.Id} class="slds-p-around_small">
+                            <!-- Display the task subject -->
+                            <span>{task.Subject}</span>
+                            
+                            <!-- Delete button for each task -->
+                            <lightning-button 
+                                variant="destructive" 
+                                icon-name="utility:delete" 
+                                onclick={handleDeleteTask} 
+                                data-id={task.Id} 
+                                class="slds-m-left_small">
+                            </lightning-button>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </template>
+    </lightning-card>
+</template>
